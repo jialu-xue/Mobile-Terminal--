@@ -1,0 +1,110 @@
+### 1. 注册用户1
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "123456"
+}
+
+### 2. 注册用户2
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "user2",
+  "password": "123456"
+}
+### 3. user1 发送好友请求给 user2
+POST http://localhost:8080/api/friend/request
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "friendId": 2
+}
+
+### 4. user2 接受好友请求
+POST http://localhost:8080/api/friend/accept
+Content-Type: application/json
+
+{
+  "requestId": 1
+}
+### 5. user1 发送消息给 user2
+POST http://localhost:8080/api/message/send
+Content-Type: application/json
+
+{
+  "senderId": 1,
+  "receiverId": 2,
+  "content": "你好，我是user1"
+}
+
+### 注册新用户
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser2",
+  "password": "123456"
+}
+### 注册第二个用户
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "friend1",
+  "password": "123456"
+}
+### testuser（ID=4）发送好友请求给 friend1（ID=5）
+POST http://localhost:8080/api/friend/request
+Content-Type: application/json
+
+{
+  "userId": 4,
+  "friendId": 5
+}
+### friend1（ID=5）接受好友请求
+POST http://localhost:8080/api/friend/accept
+Content-Type: application/json
+
+{
+  "requestId": 1
+}
+### 查询 friend1（ID=5）的待处理请求
+GET http://localhost:8080/api/friend/pending?userId=5
+### friend1（ID=5）接受好友请求
+POST http://localhost:8080/api/friend/accept
+Content-Type: application/json
+
+{
+  "requestId": 2
+}
+### friend1 发送消息给 testuser
+POST http://localhost:8080/api/message/send
+Content-Type: application/json
+
+{
+  "senderId": 5,
+  "receiverId": 4,
+  "content": "你好，我是friend1！"
+}
+### friend1 发送消息给 testuser
+POST http://localhost:8080/api/message/send
+Content-Type: application/json
+
+{
+  "senderId": 5,
+  "receiverId": 4,
+  "content": "你好，我还是friend1！"
+}
+### friend1 再发一条消息
+POST http://localhost:8080/api/message/send
+Content-Type: application/json
+
+{
+  "senderId": 5,
+  "receiverId": 4,
+  "content": "这是自动刷新的测试消息！"
+}
